@@ -51,9 +51,7 @@ public class dynamo {
 		
 		String output ="successfully dyna connected";
 		
-		//catlog c1 = new catlog();
-		//System.out.println("comapny name "+c1.getCompany());
-		
+	
 		
 	     
 		
@@ -67,8 +65,7 @@ public class dynamo {
 		String lastName = lastname;
 		String userName = username;
 		String Password = password;
-		
-	//	System.out.println("price is "+Password );
+
 		
 		AWSCredentials Credentials = new BasicAWSCredentials(MyConfig2.getMyAccessId(), MyConfig2.getMySecretId());
 		System.out.println("Credentials taken...");
@@ -87,15 +84,7 @@ public class dynamo {
 		return null;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	 private static Map<String, AttributeValue> newItem(String firstname, String lastname, String username, String password) {
 	        Map<String, AttributeValue> item = new HashMap<String, AttributeValue>();
