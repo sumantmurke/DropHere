@@ -16,11 +16,9 @@ import java.util.List;
 
 public class DbConnection {
 	
-	//private static String connectionString = "jdbc:mysql://airbox.cnnmp1jopl3g.us-west-1.rds.amazonaws.com:3306/airbox";
 	private static String connectionString="jdbc:mysql://localhost:3306/airbox";
-	private static String dbUsername = "root";
-	//private static String dbPassword = "airboxroot";
-	private static String dbPassword = "root";
+	private static String dbUsername = "";
+	private static String dbPassword = "";
 	
 public boolean loginCheck(String username, String password){
     String query;
@@ -34,7 +32,7 @@ public boolean loginCheck(String username, String password){
         System.out.println("username"+username+"pwd"+password);
         stmt.executeQuery(query);
         ResultSet rs = stmt.getResultSet();
-        login = rs.first(); //rs.first();
+        login = rs.first(); 
         con.close();
     } catch (InstantiationException e) {
         e.printStackTrace();
@@ -57,14 +55,13 @@ public String getBucketName (String username){
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection(connectionString, dbUsername, dbPassword);
         Statement stmt = (Statement) con.createStatement();
-        //String uname = user.getUserName();
+    
         query = "SELECT bucketname FROM user_details WHERE username ='"+username+"';";
-        //query = "INSERT into user_details (first_name, last_name, username, password,bucketname) values ('"+user.getFirstName()+"','"+user.getLastName()+"','"+user.getUserName()+"','"+user.getPassword()+"','"+user.getBucketname()+"')";
         ResultSet rs = stmt.executeQuery(query);
-        //System.out.println("Bucketname for User "+user.getUserName()+" is "+);
+    
         if(rs.next()){
         	bname = rs.getString("bucketname");
-        	//bname = (String) rs.getObject(1);
+        
         	
         }else
         	System.out.println("No user found for username = "+username+"  ");
@@ -86,8 +83,7 @@ public String getBucketName (String username){
 public User getUserDetails (String uname){
 	
 	String query;
-	//String bname = "nouser";
-	//List<String> nl = new ArrayList<String>();
+
 	String first_name, last_name,username, password, bucketname;
 	User userD = new User();
     try {
@@ -96,17 +92,8 @@ public User getUserDetails (String uname){
         Statement stmt = (Statement) con.createStatement();
         //String uname = user.getUserName();
         query = "SELECT * FROM user_details WHERE username ='"+uname+"';";
-        //query = "INSERT into user_details (first_name, last_name, username, password,bucketname) values ('"+user.getFirstName()+"','"+user.getLastName()+"','"+user.getUserName()+"','"+user.getPassword()+"','"+user.getBucketname()+"')";
         ResultSet rs = stmt.executeQuery(query);
-        //System.out.println("Bucketname for User "+user.getUserName()+" is "+);
-        /*if(rs.next()){
-        	bname = rs.getString("bucketname");
-        	//bname = (String) rs.getObject(1);
-        	
-        }else
-        	System.out.println("No user found for username = "+username+"  ");
-        System.out.println("Inside DbConnection - testing bucket name: " +bname);*/
-        //int numColumns = rs.getMetaData().getColumnCount();
+ 
         
         if ( rs.next() ) {
             
@@ -134,7 +121,7 @@ public User getUserDetails (String uname){
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    //return bname;
+
     return userD;
 	
 }
@@ -145,11 +132,11 @@ public List<UploadObject> getFileDetails (String uname){
 	
 	
 	String query;
-	//String bname = "nouser";
+
 	String  username, filename;
 	long filesize;
 	Date date_created;
-	//List<String> nl = new ArrayList<String>();
+
 	List<UploadObject> fileDetailsList = new ArrayList<UploadObject>();	
 
 	UploadObject fileDetailObject ;
@@ -160,45 +147,11 @@ public List<UploadObject> getFileDetails (String uname){
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection(connectionString, dbUsername, dbPassword);
         Statement stmt = (Statement) con.createStatement();
-        //String uname = user.getUserName();
+
         query = "SELECT * FROM file_details WHERE username ='"+uname+"';";
-        //query = "INSERT into user_details (first_name, last_name, username, password,bucketname) values ('"+user.getFirstName()+"','"+user.getLastName()+"','"+user.getUserName()+"','"+user.getPassword()+"','"+user.getBucketname()+"')";
         ResultSet rs = stmt.executeQuery(query);
         System.out.println("Bucketname for User ");
-        /*if(rs.next()){
-        	bname = rs.getString("bucketname");
-        	//bname = (String) rs.getObject(1);
-        	
-        }else
-        	System.out.println("No user found for username = "+username+"  ");
-        System.out.println("Inside DbConnection - testing bucket name: " +bname);*/
-        
-        /*while ( rs.next() ) {
-            int numColumns = rs.getMetaData().getColumnCount();
-            for ( int i = 1 ; i <= numColumns ; i++ ) {
-              
-               
-               nl.add((String)rs.getObject(i));
-               System.out.println( "COLUMN " + i + " = " + rs.getObject(i) );
-            }
-        }*/
-        
-        //int numColumns = rs.getMetaData().getColumnCount();
-        /*rs.last();
-        int rowcount = 0;
-        rowcount = rs.getRow();
 
-        System.out.println("row count "+rowcount);
-        rs.beforeFirst();*/
-        
-       // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        //Date date = new Date();
-        //System.out.println(dateFormat.format(date));
-        /*
-        	
-
-        rs.beforeFirst();*/
-        
 
         	while(rs.next()){
         		
@@ -234,8 +187,7 @@ public List<UploadObject> getFileDetails (String uname){
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    //return bname;
-    //return nl;
+
     
     return fileDetailsList;
 	
