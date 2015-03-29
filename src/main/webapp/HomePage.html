@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Home Page</title>
+  <meta name="author" content="Jake Rocheleau">
+  <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
+  <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="styles.css">
+  <script type="text/javascript" src="js/jquery-1.10.0.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
+  <script type="text/javascript" src="js/jquery.imagesloaded.js"></script>
+  <script type="text/javascript" src="js/video.js"></script>
+  <script type="text/javascript" src="js/bigvideo.js"></script>
+  <link href="bootstrap/bootstrap.min.css" rel="stylesheet" media="screen"
+	type="text/css">
+</head>
+
+<body>
+  <div id="blockcontent"style="height:270px">
+    <h2>Welcome to AirBox</h2>
+    <p>Shareable site to upload your documents and media files and store in your system </p>
+    <p>so that your files will be kept in a secure store.</p>
+    <p>Join us on www.facebook.com/AirBox.</p>
+   <!-- 
+    <input type="submit" value="Upload It" onclick="window.location.href='index.jsp'"/>
+    -->
+   <button class="btn btn-large btn-success" type="button" onclick="window.location.href='login.jsp'">Welcome!</button>
+  </div>
+
+<script type="text/javascript">
+/**
+ * video source: http://beachfrontprod.blogspot.com/2011/09/random-footage-clip-2.html
+ */
+$(function() {
+  var BV = new $.BigVideo({useFlashForFirefox:false});
+    
+  BV.init();
+  BV.show('media/rochester-falls.mp4', {altSource:'media/river.ogv', ambient: true});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+CREATE SCHEMA IF NOT EXISTS `airbox` 
+
+CREATE TABLE IF NOT EXISTS `airbox`.`user_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(50) NULL,
+  `last_name` VARCHAR(50) NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  UNIQUE INDEX `username_UNIQUE` (`username`),
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `airbox`.`file_details` (
+  `username` VARCHAR(50) NOT NULL,
+  `filename` VARCHAR(45) NOT NULL,
+  `filesize` INT NOT NULL,
+  `date_created` DATETIME NULL)
+ENGINE = InnoDB
+
+   ALTER TABLE `airbox`.`file_details`
+    ADD CONSTRAINT file_details_username
+    FOREIGN KEY(username)
+    REFERENCES user_details(username);
+
+
+INSERT into airbox.user_details (first_name, last_name, username, password) 
+values ('ameya','patil','ameyap','ameya')
+
+INSERT into airbox.file_details (username, filename, filesize,date_created) 
+values ('bhagyashreen','test2',100,'2014-01-11')
+
+
+select * from airbox.user_details ;
+
+select * from airbox.file_details where username='ameyap';

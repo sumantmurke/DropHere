@@ -1,0 +1,29 @@
+CREATE DATABASE `airbox` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+CREATE TABLE `user_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `bucketname` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `file_details` (
+  `username` varchar(50) NOT NULL,
+  `filename` varchar(45) NOT NULL,
+  `filesize` int(11) NOT NULL,
+  `date_created` datetime DEFAULT NULL,
+  KEY `file_details_username` (`username`),
+  CONSTRAINT `file_details_username` FOREIGN KEY (`username`) REFERENCES `user_details` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `share_details` (
+  `ownername` varchar(50) DEFAULT NULL,
+  `shareuser` varchar(50) DEFAULT NULL,
+  `filename` varchar(45) DEFAULT NULL,
+  `shareddate` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
